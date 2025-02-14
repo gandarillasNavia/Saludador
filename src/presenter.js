@@ -1,5 +1,6 @@
 const nombre = document.querySelector("#nombre");
 const genero = document.querySelector("#genero");
+const edad = document.querySelector("#edad");
 const form = document.querySelector("#saludo-form");
 const div = document.querySelector("#saludo-div");
 
@@ -10,8 +11,9 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const nombreIn = nombre.value.trim(); 
   const generoIn = genero.value;
-  let hora;
+  const edadIn = parseInt(edad.value);
 
+  let hora;
   if (horaActual < 12) {
     hora = "Buenos días";
   } else if (horaActual < 18) {
@@ -21,11 +23,28 @@ form.addEventListener("submit", (event) => {
   }
 
   let saludoG = "";
-
-  if (generoIn === "masculino") {
-     saludoG = "señor";
-  } else if (generoIn === "femenino") {
-     saludoG = "señora";
+  if (generoIn === "masculino") 
+  {
+    if(edadIn > 30)
+    {
+      saludoG = "señor";
+    }
+    else
+    {
+      saludoG = "joven";
+    }  
+  } 
+  else if (generoIn === "femenino") 
+  {
+    if(edadIn > 30)
+      {
+        saludoG = "señora";
+      }
+      else
+      {
+        saludoG = "joven";
+      }  
   }
+
   div.innerHTML = `<p>${hora} ${saludoG} ${nombreIn}</p>`;
 });
